@@ -21,7 +21,6 @@ You will need to create a psql database with the following tables and attributes
 <li>CREATE TABLE brands_stores (id serial PRIMARY KEY, brands_id int, stores_id int);</li>
 <li>CREATE DATABASE shoes_test WITH TEMPLATE shoes;</li>
 </ol>
-<br/>
 
 To edit the app, download the source code and open it in your text editor. <br />
     *Note: If you are copying any of the code to your own directories, you may need to install Composer
