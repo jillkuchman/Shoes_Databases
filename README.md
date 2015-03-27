@@ -10,12 +10,22 @@ This Shoe Store app will allow a User to create a list of shoe stores and the br
 
 ##Use and Editing
 To use the app, download the source code and run it in on your php server.
+Run your PHP server from the <strong>web</strong> folder.
 You will need to create a psql database with the following tables and attributes:
-
+<br/>
+<ol>
+<li>CREATE DATABASE shoes;</li>
+<li>\c shoes;</li>
+<li>CREATE TABLE stores (id serial PRIMARY KEY, name varchar);</li>
+<li>CREATE TABLE brands (id serial PRIMARY KEY, title varchar);</li>
+<li>CREATE TABLE brands_stores (id serial PRIMARY KEY, brands_id int, stores_id int);</li>
+<li>CREATE DATABASE shoes_test WITH TEMPLATE shoes;</li>
+</ol>
+<br/>
 
 To edit the app, download the source code and open it in your text editor. <br />
     *Note: If you are copying any of the code to your own directories, you may need to install Composer
-    in your root directory.*
+    in your root directory*
 
 ##Copyright (c) 2015 Jill Kuchman
 Permission is hereby granted, free of charge, to any person obtaining a copy
