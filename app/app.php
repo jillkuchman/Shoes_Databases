@@ -35,9 +35,10 @@
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
+    //This route deletes all stores from the database
     $app->delete("/delete_all_stores", function() use ($app) {
         Store::deleteAll();
-        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));        
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
     //INDIVIDUAL STORE PAGES
@@ -74,6 +75,13 @@
         $new_brand->save();
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
+
+    //This route deletes all brands from the database
+    $app->delete("/delete_all_brands", function() use ($app) {
+        Brand::deleteAll();
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));        
+    });
+
 
     //INDIVIDUAL BRAND PAGES
     //Get: loads brand page with list of stores that carry the brand, and the option to add a store to the list of stores

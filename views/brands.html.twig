@@ -24,6 +24,12 @@
                 <li><a href="brands/{{ brand.getId }}">{{ brand.getTitle }}</a></li>
             {% endfor %}
         </ul>
+        <form action="delete_all_brands" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <button type="submit">Remove All Brands</button>
+        </form>
+        {% else %}
+            <h3>No Brands are listed.</h3>
         {% endif %}
 
 
