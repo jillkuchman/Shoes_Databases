@@ -30,7 +30,7 @@
 
     //STORES page, POST: adds a new store to list of stores
     $app->post("/stores", function() use($app) {
-        $new_store = new Store($_POST['name']);
+        $new_store = new Store($_POST['store_name']);
         $new_store->save();
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
@@ -59,6 +59,7 @@
 
     //BRANDS page, POST: adds a new brand to list of brands
     $app->post("/brands", function() use($app) {
+        $new_brand = new Brand($_POST['brand_title']);
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
