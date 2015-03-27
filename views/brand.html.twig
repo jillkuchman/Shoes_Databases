@@ -29,6 +29,18 @@
             <button type="submit">Add Store</button>
         </form>
 
+        <form action="/delete_stores" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <label for="store_id">Remove this brand from a store's inventory</label>
+            <input value="{{ brand.getId }}" name="brand_id" id="brand_id" type="hidden">
+            <select id="store_id" name="store_id" type="int">
+                {% for store in stores %}
+                    <option value="{{ store.getId }}">{{ store.getName }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Remove Store</button>
+        </form>
+
         <form action="/delete_brand" method="post">
             <input name="_method" type="hidden" value="delete">
             <input name="brand_id" id="brand_id" value="{{ brand.getId }}" type="hidden">

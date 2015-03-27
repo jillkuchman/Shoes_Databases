@@ -56,7 +56,8 @@
         return $app['twig']->render('store.html.twig', array('store' => $current_store, 'brands' => $current_store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
-    $app->delete("/delete_brands", function() use($app) {
+    //This route deletes a brand from a store's list of brands
+    $app->delete("/delete_brand", function() use($app) {
         $current_store = Store::find($_POST['store_id']);
         $brand = Brand::find($_POST['brand_id']);
         $current_store->deleteBrand($brand);
@@ -106,6 +107,15 @@
         $current_brand->addStore($store);
         return $app['twig']->render('brand.html.twig', array('brand' => $current_brand, 'stores' => $current_brand->getStores(), 'all_stores' => Store::getAll()));
     });
+
+    //WRONG!! SUPPOSED to delete a store from a brand's list of stores but is currently deleting the store completely
+    $app->delete("/delete_stores", function() use($app) {
+        $current_brand = Brand::find($_POST['brand_id']);
+        $store = Store::find($_POST['store_id']);
+        $current_brand->deleteStore($store);
+        return $app['twig']->render('brand.html.twig', array('brand' => $current_brand, 'stores' => $current_brand->getStores(), 'all_stores' => Store::getAll()));
+    });
+
 
     //This route will delete a specific brand from the list of brands
     $app->delete("/delete_brand", function() use($app) {
