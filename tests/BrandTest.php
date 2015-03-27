@@ -8,12 +8,14 @@
     $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
 
     require_once "src/Brand.php";
+    require_once "src/Store.php";
 
     class BrandTest extends PHPUnit_Framework_TestCase
     {
         protected function tearDown()
         {
             Brand::deleteAll();
+            Store::deleteAll();
         }
 
         function test_getTitle()
@@ -180,6 +182,73 @@
             $this->assertEquals([$test_brand2], $result);
         }
 
+        function test_addStore()
+        {
+            //Arrange
+            $title = "Reebok";
+            $test_brand = new Brand($title);
+            $test_brand->save();
+
+            $name = "Payless";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            //Act
+            $test_brand->addStore($test_store);
+            $result = $test_brand->getStores();
+
+            //Assert
+            $this->assertEquals([$test_store], $result);
+        }
+
+        function test_getStores()
+        {
+            //Arrange
+            $title = "Reebok";
+            $test_brand = new Brand($title);
+            $test_brand->save();
+
+            $name = "Payless";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            $name2 = "OnlineShoes";
+            $test_store2 = new Store($name2);
+            $test_store2->save();
+
+            //Act
+            $test_brand->addStore($test_store);
+            $test_brand->addStore($test_store2);
+            $result = $test_brand->getStores();
+
+            //Assert
+            $this->assertEquals([$test_store, $test_store2], $result);
+        }
+
+        function test_deleteStore()
+        {
+            //Arrange
+            $title = "Reebok";
+            $test_brand = new Brand($title);
+            $test_brand->save();
+
+            $name = "Payless";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            $name2 = "OnlineShoes";
+            $test_store2 = new Store($name2);
+            $test_store2->save();
+
+            //Act
+            $test_brand->addStore($test_store);
+            $test_brand->addStore($test_store2);
+            $test_brand->deleteStore($test_store);
+            $result = $test_brand->getStores();
+
+            //Assert
+            $this->assertEquals([$test_store2], $result);
+        }
 
     }
 
