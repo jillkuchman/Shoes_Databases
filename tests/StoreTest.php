@@ -127,6 +127,59 @@
             $this->assertEquals([], $result);
         }
 
+        function test_find()
+        {
+            //Arrange
+            $name = "Payless";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            $name2 = "OnlineShoes";
+            $test_store2 = new Store($name2);
+            $test_store2->save();
+
+            //Act
+            $result = Store::find($test_store2->getId());
+
+            //Arrange
+            $this->assertEquals($test_store2, $result);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $name = "Payless";
+            $test_store = new Store($name);
+            $test_store->save();
+            $new_name = "OnlineShoes";
+
+            //Act
+            $test_store->update($new_name);
+            $result = $test_store->getName();
+
+            //Arrange
+            $this->assertEquals($new_name, $result);
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $name = "Payless";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            $name2 = "OnlineShoes";
+            $test_store2 = new Store($name2);
+            $test_store2->save();
+
+            //Act
+            $test_store->delete();
+            $result = Store::getAll();
+
+            //Arrange
+            $this->assertEquals([$test_store2], $result);
+        }
+
     }
 
 ?>

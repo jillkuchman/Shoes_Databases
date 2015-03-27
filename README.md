@@ -5,7 +5,7 @@ Jill Kuchman
 March 27 2015
 
 ##Description
-This Shoe Store app will allow a User to add a list shoe brands and a list of stores.
+This Shoe Store app will allow a User to create a list of shoe stores and the brands of shoes they carry.
 
 
 ##Use and Editing
