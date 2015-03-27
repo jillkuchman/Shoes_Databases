@@ -22,15 +22,18 @@
 
         <form action="/stores" method="post">
             <label for="store_name">Add a store:</label>
-            <input type="text" name="store_name" id="store_name" required>
+            <input type="text" name="store_name" id="store_name" class="form-control" required>
+            <br>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
 
         {% if stores is not empty %}
+            <br>
             <form action="delete_all_stores" method="post">
                 <input name="_method" type="hidden" value="delete">
                 <button type="submit"class="btn btn-danger">Remove All Stores</button>
             </form>
+            <br>
         {% endif %}
 
 

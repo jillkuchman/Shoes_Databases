@@ -10,25 +10,28 @@
             <h1>{{ brand.getTitle }}</h1>
         </div>
 
+
         {% if stores is not empty %}
-            <h3>Stores that carry {{ brand.getTitle }}:</h3>
-            <ol>
-                {% for store in stores %}
-                <li>{{ store.getName }}</li>
+        <ul class="list-group">
+            <li class="list-group-item active">Stores that carry {{ brand.getTitle }}</li>
+            {% for store in stores|sort %}
+                <li class="list-group-item">{{ store.getName }}</li>
                 {% endfor %}
-            </ol>
+        </ul>
         {% else %}
-            <h3>This brand is not carried at any listed stores.</h3>
+            <h3>This store does not carry any listed brands of shoes.</h3>
         {% endif %}
+
 
         <form action="/add_store" method="post">
             <label for="store_id">Select a Store</label>
             <input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
-            <select id="store_id" name="store_id" type="int">
+            <select id="store_id" name="store_id" type="int" class="form-control">
                 {% for store in all_stores|sort %}
                     <option value="{{ store.getId }}">{{ store.getName }}</option>
                 {% endfor %}
             </select>
+            <br>
             <button type="submit" class="btn btn-success">Add Store</button>
         </form>
 
@@ -36,19 +39,22 @@
             <input name="_method" type="hidden" value="delete">
             <label for="store_id">Remove this brand from a store's inventory</label>
             <input value="{{ brand.getId }}" name="brand_id" id="brand_id" type="hidden">
-            <select id="store_id" name="store_id" type="int">
+            <select id="store_id" name="store_id" type="int" class="form-control">
                 {% for store in stores|sort %}
                     <option value="{{ store.getId }}">{{ store.getName }}</option>
                 {% endfor %}
             </select>
+            <br>
             <button type="submit" class="btn btn-warning">Remove Store</button>
         </form>
 
+        <br>
         <form action="/delete_brand" method="post">
             <input name="_method" type="hidden" value="delete">
             <input name="brand_id" id="brand_id" value="{{ brand.getId }}" type="hidden">
             <button type="submit" class="btn btn-danger">Remove this brand</button>
         </form>
+        <br>
 
         <form action="/brands">
             <button type="submit" class="btn btn-info">Back to the list of brands</button>

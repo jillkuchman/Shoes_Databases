@@ -44,7 +44,7 @@
     //INDIVIDUAL STORE PAGES//
     //GET: this route loads store page with list of brands the store carries and the option to add a brand from the list of brands
     $app->get("/stores/{id}", function($id) use($app) {
-        $current_store = Store::find($id);        
+        $current_store = Store::find($id);
         return $app['twig']->render('store.html.twig', array('store' => $current_store, 'brands' => $current_store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
