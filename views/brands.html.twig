@@ -5,6 +5,26 @@
 </head>
 <body>
     <div class="container">
+        <h1>Brands</h1>
+
+        <form action="/brands" method="post">
+            <label for="brand_title">Add a brand:</label>
+            <input type="text" name="brand_title" id="brand_title">
+            <button type="submit">Submit</button>
+        </form>
+
+        <form action="/">
+            <button type="submit">Back Home</button>
+        </form>
+
+        <h2>List of Brands</h2>
+        {% if brands is not empty %}
+        <ul>
+            {% for brand in brands|sort %}
+                <li><a href="brands/{{ brand.getId }}">{{ brand.getTitle }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
     </div>
 </body>

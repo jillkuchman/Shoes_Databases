@@ -60,6 +60,7 @@
     //BRANDS page, POST: adds a new brand to list of brands
     $app->post("/brands", function() use($app) {
         $new_brand = new Brand($_POST['brand_title']);
+        $new_brand->save();
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 

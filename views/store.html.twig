@@ -1,11 +1,30 @@
 <html>
 <head>
-    <title>OMG SHOES!</title>
+    <title>{{ store.getName }}</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
 </head>
 <body>
     <div class="container">
+        <h1>{{ store.getName }}</h1>
 
+        {% if brands is not empty %}
+            <h3>Brands of shoes we carry:</h3>
+            <ol>
+                {% for brand in brands %}
+                <li>{{ brand.getTitle }}</li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <h3>This store does not carry any listed brands of shoes.</h3>
+        {% endif %}
+
+        <form action="/stores">
+            <button type="submit">Back to the list of stores</button>
+        </form>
+
+        <form action="/">
+            <button type="submit">Back home</button>
+        </form>
     </div>
 </body>
 </html>
