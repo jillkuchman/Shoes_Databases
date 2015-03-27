@@ -35,6 +35,11 @@
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
+    $app->delete("/delete_all_stores", function() use ($app) {
+        Store::deleteAll();
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));        
+    });
+
     //INDIVIDUAL STORE PAGES
     //Get: loads store page with list of brands the store carries and the option to add a brand from the list of brands
     $app->get("/stores/{id}", function($id) use($app) {
@@ -58,7 +63,6 @@
     });
 
     //BRANDS pages
-
     //BRANDS page, GET: list of brands with links to each brand, form to add new Brand
     $app->get("/brands", function() use($app) {
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));

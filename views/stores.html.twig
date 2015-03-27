@@ -9,7 +9,7 @@
 
         <form action="/stores" method="post">
             <label for="store_name">Add a store:</label>
-            <input type="text" name="store_name" id="store_name">
+            <input type="text" name="store_name" id="store_name" required>
             <button type="submit">Submit</button>
         </form>
 
@@ -25,6 +25,12 @@
             {% endfor %}
         </ul>
 
+        <form action="delete_all_stores" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <button type="submit">Remove All Stores</button>
+        </form>
+        {% else %}
+            <h3>No stores are listed.</h3>
         {% endif %}
     </div>
 </body>
