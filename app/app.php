@@ -43,11 +43,17 @@
     });
 
     //Post: adds the brand that was selected in the Get route to the current store's list of brands, submitted from a form with the name "brand_id"
-    $app->post("/stores/{id}", function($id) use($app) {
-        $current_store = Store::find($id);
-        $new_brand = Brand::find($_POST['brand_id']);
-        $current_store->addBrand($new_brand);
+    $app->post("/add_brand", function() use ($app) {
+        $current_store = Store::find($_POST['store_id']);
+        $brand = Brand::find($_POST['brand_id']);
+        $current_store->addBrand($brand);
         return $app['twig']->render('store.html.twig', array('store' => $current_store, 'brands' => $current_store->getBrands(), 'all_brands' => Brand::getAll()));
+    });
+
+    $app->delete("/delete_store", function() use($app) {
+        $current_store = Store::find($_POST['store_id']);
+        $current_store->delete();
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getall()));
     });
 
     //BRANDS pages
