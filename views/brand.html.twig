@@ -18,6 +18,17 @@
             <h3>This brand is not carried at any listed stores.</h3>
         {% endif %}
 
+        <form action="/brands/{{ brand.getId }}" method="post">
+            <label for="store_id">Select a Store</label>
+            <input value="{{ brand.getId }}" id="store_id" type="hidden">
+            <select id="store_id" name="store_id" type="int">
+                {% for store in all_stores %}
+                    <option value="{{ store.getId }}">{{ store.getName }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add Store</button>
+        </form>
+
         <form action="/brands">
             <button type="submit">Back to the list of brands</button>
         </form>
