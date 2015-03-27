@@ -5,7 +5,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>Shoe Stores</h1>
+        <div class="page-header">
+            <h1>Shoe Stores</h1>
+        </div>
+
+        {% if stores is not empty %}
+            <ul class="list-group">
+                <li class="list-group-item active">List of Stores</li>
+                {% for store in stores|sort %}
+                    <a href="stores/{{ store.getId }}" class="list-group-item">{{ store.getName }}</a>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>No stores are listed.</h3>
+        {% endif %}
 
         <form action="/stores" method="post">
             <label for="store_name">Add a store:</label>
@@ -13,21 +26,13 @@
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
 
-        <h2>List of Stores</h2>
         {% if stores is not empty %}
-        <ul>
-            {% for store in stores|sort %}
-                <li><a href="stores/{{ store.getId }}">{{ store.getName }}</a></li>
-            {% endfor %}
-        </ul>
-
-        <form action="delete_all_stores" method="post">
-            <input name="_method" type="hidden" value="delete">
-            <button type="submit"class="btn btn-danger">Remove All Stores</button>
-        </form>
-        {% else %}
-            <h3>No stores are listed.</h3>
+            <form action="delete_all_stores" method="post">
+                <input name="_method" type="hidden" value="delete">
+                <button type="submit"class="btn btn-danger">Remove All Stores</button>
+            </form>
         {% endif %}
+
 
         <form action="/">
             <button type="submit"class="btn btn-primary">Back Home</button>

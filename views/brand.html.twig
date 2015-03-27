@@ -5,7 +5,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>{{ brand.getTitle }}</h1>
+
+        <div class="page-header">
+            <h1>{{ brand.getTitle }}</h1>
+        </div>
 
         {% if stores is not empty %}
             <h3>Stores that carry {{ brand.getTitle }}:</h3>
