@@ -79,5 +79,12 @@
         return $app['twig']->render('brand.html.twig', array('brand' => $current_brand, 'stores' => $current_brand->getStores(), 'all_stores' => Store::getAll()));
     });
 
+    //This route will delete a specific brand from the list of brands
+    $app->delete("/brands/{id}/delete", function($id) use($app) {
+        $current_brand = Brand::find($id);
+        $current_brand->delete();
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
     return $app;
 ?>
