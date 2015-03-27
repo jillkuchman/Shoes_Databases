@@ -5,6 +5,7 @@
 </head>
 <body>
     <div class="container">
+
         <h1>Brands</h1>
 
         <form action="/brands" method="post">
@@ -13,25 +14,27 @@
             <button type="submit">Submit</button>
         </form>
 
-        <form action="/">
-            <button type="submit">Back Home</button>
-        </form>
-
         <h2>List of Brands</h2>
+
         {% if brands is not empty %}
-        <ul>
-            {% for brand in brands|sort %}
-                <li><a href="brands/{{ brand.getId }}">{{ brand.getTitle }}</a></li>
-            {% endfor %}
-        </ul>
-        <form action="delete_all_brands" method="post">
-            <input name="_method" type="hidden" value="delete">
-            <button type="submit">Remove All Brands</button>
-        </form>
+
+            <ul>
+                {% for brand in brands|sort %}
+                    <li><a href="brands/{{ brand.getId }}">{{ brand.getTitle }}</a></li>
+                {% endfor %}
+            </ul>
+            <form action="delete_all_brands" method="post">
+                <input name="_method" type="hidden" value="delete">
+                <button type="submit">Remove All Brands</button>
+            </form>
+
         {% else %}
             <h3>No Brands are listed.</h3>
         {% endif %}
 
+        <form action="/">
+            <button type="submit">Back Home</button>
+        </form>
 
     </div>
 </body>

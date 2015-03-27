@@ -56,12 +56,21 @@
         return $app['twig']->render('store.html.twig', array('store' => $current_store, 'brands' => $current_store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
-    //Delete: deletes the store from the individual store page
+    $app->delete("/delete_brands", function() use($app) {
+        $current_store = Store::find($_POST['store_id']);
+        $brand = Brand::find($_POST['brand_id']);
+        $current_store->deleteBrand($brand);
+        return $app['twig']->render('store.html.twig', array('store' => $current_store, 'brands' => $current_store->getBrands(), 'all_brands' => Brand::getAll()));
+    });
+
+
+    //Delete: deletes the store from the list of stores
     $app->delete("/delete_store", function() use($app) {
         $current_store = Store::find($_POST['store_id']);
         $current_store->delete();
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getall()));
     });
+
 
     //BRANDS pages
     //BRANDS page, GET: list of brands with links to each brand, form to add new Brand
@@ -79,7 +88,7 @@
     //This route deletes all brands from the database
     $app->delete("/delete_all_brands", function() use ($app) {
         Brand::deleteAll();
-        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));        
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
 

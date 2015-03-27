@@ -13,14 +13,10 @@
             <button type="submit">Submit</button>
         </form>
 
-        <form action="/">
-            <button type="submit">Back Home</button>
-        </form>
-
         <h2>List of Stores</h2>
         {% if stores is not empty %}
         <ul>
-            {% for store in stores %}
+            {% for store in stores|sort %}
                 <li><a href="stores/{{ store.getId }}">{{ store.getName }}</a></li>
             {% endfor %}
         </ul>
@@ -32,6 +28,10 @@
         {% else %}
             <h3>No stores are listed.</h3>
         {% endif %}
+
+        <form action="/">
+            <button type="submit">Back Home</button>
+        </form>
     </div>
 </body>
 </html>
