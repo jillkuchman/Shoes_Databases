@@ -127,6 +127,60 @@
             $this->assertEquals([], $result);
         }
 
+        function test_find()
+        {
+            //Arrange
+            $title = "Reebok";
+            $test_brand = new Brand($title);
+            $test_brand->save();
+
+            $title2 = "Adidas";
+            $test_brand2 = new Brand($title2);
+            $test_brand2->save();
+
+            //Act
+            $result = Brand::find($test_brand2->getId());
+
+            //Arrange
+            $this->assertEquals($test_brand2, $result);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $title = "Reebok";
+            $test_brand = new Brand($title);
+            $test_brand->save();
+            $new_title = "Adidas";
+
+            //Act
+            $test_brand->update($new_title);
+            $result = $test_brand->getTitle();
+
+            //Arrange
+            $this->assertEquals($new_title, $result);
+        }
+
+        function test_delete()
+        {
+            //Arrange
+            $title = "Reebok";
+            $test_brand = new Brand($title);
+            $test_brand->save();
+
+            $title2 = "Adidas";
+            $test_brand2 = new Brand($title2);
+            $test_brand2->save();
+
+            //Act
+            $test_brand->delete();
+            $result = Brand::getAll();
+
+            //Arrange
+            $this->assertEquals([$test_brand2], $result);
+        }
+
+
     }
 
 ?>
