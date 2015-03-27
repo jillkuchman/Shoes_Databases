@@ -22,11 +22,11 @@
             <label for="brand_id">Add a brand to the {{ store.getName }} inventory:</label>
             <input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
             <select id="brand_id" name="brand_id" type="int">
-                {% for brand in all_brands %}
+                {% for brand in all_brands|sort %}
                     <option value="{{ brand.getId }}">{{ brand.getTitle }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Add Brand</button>
+            <button type="submit" class="btn btn-success">Add Brand</button>
         </form>
 
         <form action="/delete_brands" method="post">
@@ -34,25 +34,25 @@
             <label for="brand_id">Remove a brand from this store</label>
             <input value="{{ store.getId }}" name="store_id" id="store_id" type="hidden">
             <select id="brand_id" name="brand_id" type="int">
-                {% for brand in brands %}
+                {% for brand in brands|sort %}
                     <option value="{{ brand.getId }}">{{ brand.getTitle }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Remove Brand</button>
+            <button type="submit" class="btn btn-warning">Remove Brand</button>
         </form>
 
         <form action="/delete_store" method="post">
             <input name="_method" type="hidden" value="delete">
             <input name="store_id" id="store_id" value="{{ store.getId }}" type="hidden">
-            <button type="submit">Remove this store</button>
+            <button type="submit" class="btn btn-danger">Remove this store</button>
         </form>
 
         <form action="/stores">
-            <button type="submit">Back to the list of stores</button>
+            <button type="submit" class="btn btn-info">Back to the list of stores</button>
         </form>
 
         <form action="/">
-            <button type="submit">Back home</button>
+            <button type="submit" class="btn btn-primary">Back home</button>
         </form>
     </div>
 </body>
