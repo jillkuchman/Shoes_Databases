@@ -28,12 +28,14 @@
             </select>
             <button type="submit">Add Store</button>
         </form>
-        
 
-        <form action="/brands/{{ brand.getId }}/delete" method="post">
+        <form action="/delete_brand" method="post">
             <input name="_method" type="hidden" value="delete">
+            <input name="brand_id" id="brand_id" value="{{ brand.getId }}" type="hidden">
             <button type="submit">Remove this brand</button>
         </form>
+
+
 
         <form action="/brands">
             <button type="submit">Back to the list of brands</button>

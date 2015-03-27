@@ -79,12 +79,6 @@
     });
 
     //Post: adds the store that was selected in the Get route to the current brand's list of stores, submitted from a form with the name "store_id"
-    // $app->post("/brands/{id}", function($id) use($app) {
-    //     $current_brand = Brand::find($id);
-    //     $new_store = Store::find($_POST['store_id']);
-    //     $current_brand->addStore($new_store);
-    //     return $app['twig']->render('brand.html.twig', array('brand' => $current_brand, 'stores' => $current_brand->getStores(), 'all_stores' => Store::getAll()));
-    // });
     $app->post("/add_store", function() use ($app) {
         $current_brand = Brand::find($_POST['brand_id']);
         $store = Store::find($_POST['store_id']);
@@ -93,10 +87,10 @@
     });
 
     //This route will delete a specific brand from the list of brands
-    $app->delete("/brands/{id}/delete", function($id) use($app) {
-        $current_brand = Brand::find($id);
+    $app->delete("/delete_brand", function() use($app) {
+        $current_brand = Brand::find($_POST['brand_id']);
         $current_brand->delete();
-        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getall()));
     });
 
     return $app;
