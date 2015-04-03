@@ -68,8 +68,8 @@ ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
 
 CREATE TABLE brands_stores (
     id integer NOT NULL,
-    brands_id integer,
-    stores_id integer
+    brand_id integer,
+    store_id integer
 );
 
 
@@ -162,68 +162,14 @@ COPY brands (id, title) FROM stdin;
 -- Name: brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('brands_id_seq', 203, true);
+SELECT pg_catalog.setval('brands_id_seq', 1, false);
 
 
 --
 -- Data for Name: brands_stores; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY brands_stores (id, brands_id, stores_id) FROM stdin;
-1	11	11
-2	12	12
-3	13	12
-5	15	13
-6	55	39
-7	56	40
-8	57	40
-10	59	41
-11	73	57
-12	74	58
-13	75	58
-15	77	59
-16	91	75
-17	92	76
-18	93	76
-20	95	77
-21	109	93
-22	110	94
-23	111	94
-25	113	95
-26	127	111
-27	128	112
-28	129	112
-30	131	113
-31	145	129
-32	146	130
-33	147	130
-35	149	131
-36	160	132
-37	161	133
-38	161	134
-39	162	135
-40	162	136
-41	163	147
-42	164	148
-43	165	148
-45	167	149
-46	178	150
-47	179	151
-48	179	152
-49	180	153
-50	180	154
-51	181	165
-52	182	166
-53	183	166
-55	185	167
-56	196	168
-57	197	169
-58	197	170
-60	198	172
-61	199	183
-62	200	184
-63	201	184
-65	203	185
+COPY brands_stores (id, brand_id, store_id) FROM stdin;
 \.
 
 
@@ -231,7 +177,7 @@ COPY brands_stores (id, brands_id, stores_id) FROM stdin;
 -- Name: brands_stores_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('brands_stores_id_seq', 65, true);
+SELECT pg_catalog.setval('brands_stores_id_seq', 1, false);
 
 
 --
@@ -246,7 +192,7 @@ COPY stores (id, name) FROM stdin;
 -- Name: stores_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('stores_id_seq', 185, true);
+SELECT pg_catalog.setval('stores_id_seq', 1, false);
 
 
 --

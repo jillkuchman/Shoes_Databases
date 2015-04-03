@@ -68,8 +68,8 @@ ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
 
 CREATE TABLE brands_stores (
     id integer NOT NULL,
-    brands_id integer,
-    stores_id integer
+    brand_id integer,
+    store_id integer
 );
 
 
@@ -169,7 +169,7 @@ SELECT pg_catalog.setval('brands_id_seq', 1, false);
 -- Data for Name: brands_stores; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY brands_stores (id, brands_id, stores_id) FROM stdin;
+COPY brands_stores (id, brand_id, store_id) FROM stdin;
 \.
 
 
