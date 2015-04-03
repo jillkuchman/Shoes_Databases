@@ -81,14 +81,14 @@
 
         function addStore($store)
         {
-            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brands_id, stores_id) VALUES ({$this->getId()}, {$store->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
         }
 
         function getStores()
         {
             $statement = $GLOBALS['DB']->query("SELECT stores.* FROM brands
-                                                JOIN brands_stores ON (brands.id = brands_stores.brands_id)
-                                                JOIN stores ON (brands_stores.stores_id = stores.id)
+                                                JOIN brands_stores ON (brands.id = brands_stores.brand_id)
+                                                JOIN stores ON (brands_stores.store_id = stores.id)
                                                 WHERE brands.id = {$this->getId()};");
             $store_id = $statement->fetchAll(PDO::FETCH_ASSOC);
             $stores = array();
@@ -103,7 +103,7 @@
 
         function deleteStore($store)
         {
-            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE (brands_id, stores_id) = ({$this->getId()}, {$store->getId()});");
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE (brand_id, store_id) = ({$this->getId()}, {$store->getId()});");
         }
 
 
